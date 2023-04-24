@@ -8,23 +8,15 @@ public class Plant {
     private double light;
     private double soil;
 
-    public Plant(String name, double temp, double humid, double light, double soil) {
-        this.name = name;
-        this.temp = temp;
-        this.humid = humid;
-        this.light = light;
-        this.soil = soil;
-    }
-/*
-    public Plant(String name, double temp, double humid, double light, double soil) {
-        this.name = name;
-        this.temp = temp;
-        this.humid = humid;
-        this.light = light;
-        this.soil = soil;
-    }
+    public Plant(){}
 
- */
+    public Plant(String name, double temp, double humid, double light, double soil) {
+        this.name = name;
+        this.temp = temp;
+        this.humid = humid;
+        this.light = light;
+        this.soil = soil;
+    }
 
     public String getName() {
         return name;
@@ -38,7 +30,7 @@ public class Plant {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 
@@ -46,20 +38,18 @@ public class Plant {
         return humid;
     }
 
-    public void setHumid(int humid) {
+    public void setHumid(double humid) {
         this.humid = humid;
     }
 
-
-
-    public void setLight(int light) {
+    public void setLight(double light) {
         this.light = light;
     }
     public double getLight() {
         return light;
     }
 
-    public void setSoil(int soil) {
+    public void setSoil(double soil) {
         this.soil = soil;
     }
     public double getSoil() {

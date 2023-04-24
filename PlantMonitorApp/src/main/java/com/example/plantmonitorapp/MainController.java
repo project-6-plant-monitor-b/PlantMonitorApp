@@ -1,12 +1,5 @@
 package com.example.plantmonitorapp;
-import java.io.*;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Iterator;
-import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +14,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import java.io.*;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.ResourceBundle;
 
 
 public class MainController implements Initializable {
@@ -48,6 +46,9 @@ public class MainController implements Initializable {
 	private Scene scene;
 	private Parent root;
 	ObservableList<Plant> allPlants;
+	Plant selectedPlant;
+	Plant realTimePlant;
+
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -133,20 +134,27 @@ public class MainController implements Initializable {
 	}
 
 
-	public void displayName(String user, String monitor, ObservableList<Plant> allPlants) {
+	public void displayName(String user, String monitor, ObservableList<Plant> allPlants, Plant selectedPlant, Plant realTimePlant) {
 		userSign = user;
 		monitorSign = monitor;
 		this.allPlants = allPlants;
-		plantTable.setItems(allPlants);
+		this.selectedPlant = selectedPlant;
+		this.realTimePlant = realTimePlant;
 		nameLabel.setText("Hello: " + user + "!\t\tConnected to: " + monitor);
+		System.out.println(selectedPlant.getName());
+	}
+
+	public void setSelectedPlant() {
+		selectedPlant = plantTable.getSelectionModel().getSelectedItem();
 	}
 
 	@FXML
     void aboutClicked(ActionEvent event) throws IOException {
+		setSelectedPlant();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));	
 		root = loader.load();	
 		AboutController aboutController = loader.getController();
-		aboutController.displayName(userSign, monitorSign, allPlants);
+		aboutController.displayName(userSign, monitorSign, allPlants, selectedPlant,realTimePlant);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -155,10 +163,11 @@ public class MainController implements Initializable {
 
     @FXML
     void alertsClicked(ActionEvent event) throws IOException {
+		setSelectedPlant();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));	
 		root = loader.load();	
 		AlertsController alertsController = loader.getController();
-		alertsController.displayName(userSign, monitorSign, allPlants);
+		alertsController.displayName(userSign, monitorSign, allPlants, selectedPlant,realTimePlant);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -167,10 +176,11 @@ public class MainController implements Initializable {
 
     @FXML
     void plantInfoClicked(ActionEvent event) throws IOException {
+		setSelectedPlant();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
 		root = loader.load();	
 		PlantInfoController piController = loader.getController();
-		piController.displayName(userSign, monitorSign, allPlants);
+		piController.displayName(userSign, monitorSign, allPlants, selectedPlant,realTimePlant);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -181,6 +191,8 @@ public class MainController implements Initializable {
     void plantsClicked(ActionEvent event) {
 		// leave blank
     }
+
+
 
 
 
