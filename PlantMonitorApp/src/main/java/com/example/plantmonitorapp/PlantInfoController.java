@@ -113,13 +113,19 @@ public class PlantInfoController {
         AtSign java = new AtSign("@unpleasantwater");
         AtClient atClient = AtClient.withRemoteSecondary("root.atsign.org:64", java,  false);
         Keys.SharedKey sharedKey1 = new KeyBuilders.SharedKeyBuilder(esp32, java).key("test").build();
+        Keys.SharedKey sharedKey2 = new KeyBuilders.SharedKeyBuilder(esp32, java).key("test2").build();
+        Keys.SharedKey sharedKey3 = new KeyBuilders.SharedKeyBuilder(esp32, java).key("test3").build();
+        Keys.SharedKey sharedKey4 = new KeyBuilders.SharedKeyBuilder(esp32, java).key("test4").build();
         String value = atClient.get(sharedKey1).get();
+        String value2 = atClient.get(sharedKey2).get();
+        String value3 = atClient.get(sharedKey3).get();
+        String value4 = atClient.get(sharedKey4).get();
         System.out.println("Value is: " + value);
         realTimePlant = new Plant();
         realTimePlant.setName(selectedPlant.getName());
-        realTimePlant.setTemp(24.26);   // Replace with real data
-        realTimePlant.setHumid(22.22);  // Replace with real data
-        realTimePlant.setLight(104);    // Replace with real data
+        realTimePlant.setTemp(Double.parseDouble(value2));   // Replace with real data
+        realTimePlant.setHumid(Double.parseDouble(value3));  // Replace with real data
+        realTimePlant.setLight(Double.parseDouble(value4));    // Replace with real data
         realTimePlant.setSoil(Double.parseDouble(value));   // Replace with real data
     }
 }
