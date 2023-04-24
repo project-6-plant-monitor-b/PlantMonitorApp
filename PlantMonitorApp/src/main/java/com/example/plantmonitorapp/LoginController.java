@@ -11,15 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.atsign.client.api.AtClient;
+import org.atsign.common.AtSign;
 
 public class LoginController {
 
-	@FXML
-	TextField userSignField;
-	@FXML
-	TextField monitorSignField;
-	@FXML
-	Label statusLabel;
+	@FXML TextField userSignField;
+	@FXML TextField monitorSignField;
+	@FXML Label statusLabel;
 
 	public String userSign;
 	public String monitorSign;

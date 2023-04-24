@@ -4,6 +4,7 @@ import java.io.IOException;
 import com.example.plantmonitorapp.AlertsController;
 import com.example.plantmonitorapp.MainController;
 import com.example.plantmonitorapp.PlantInfoController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,12 +23,17 @@ public class AboutController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	
-	public void displayName(String user, String monitor) {
-        userSign = user;
+	ObservableList<Plant> allPlants;
+
+
+
+	public void displayName(String user, String monitor, ObservableList<Plant> allPlants) {
+		userSign = user;
 		monitorSign = monitor;
+		this.allPlants = allPlants;
 		nameLabel.setText("Hello: " + user + "!\t\tConnected to: " + monitor);
 	}
+
 	@FXML
     void aboutClicked(ActionEvent event) {
 
@@ -38,7 +44,7 @@ public class AboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));	
 		root = loader.load();	
 		AlertsController alertsController = loader.getController();
-		alertsController.displayName(userSign, monitorSign);
+		alertsController.displayName(userSign, monitorSign, allPlants);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -50,7 +56,7 @@ public class AboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
 		root = loader.load();	
 		PlantInfoController piController = loader.getController();
-		piController.displayName(userSign, monitorSign);
+		piController.displayName(userSign, monitorSign, allPlants);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -62,7 +68,7 @@ public class AboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));	
 		root = loader.load();	
 		MainController mainController = loader.getController();
-		mainController.displayName(userSign, monitorSign);
+		mainController.displayName(userSign, monitorSign, allPlants);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
