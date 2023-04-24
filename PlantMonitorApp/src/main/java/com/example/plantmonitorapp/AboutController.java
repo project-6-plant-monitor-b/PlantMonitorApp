@@ -1,5 +1,6 @@
 package com.example.plantmonitorapp;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.atsign.common.AtException;
 
 public class AboutController {
 
@@ -56,7 +58,7 @@ public class AboutController {
     }
 
     @FXML
-    void plantInfoClicked(ActionEvent event) throws IOException {
+    void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
 		root = loader.load();	
 		PlantInfoController piController = loader.getController();

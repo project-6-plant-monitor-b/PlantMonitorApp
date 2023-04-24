@@ -14,11 +14,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.atsign.common.AtException;
 
 import java.io.*;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainController implements Initializable {
@@ -175,7 +177,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void plantInfoClicked(ActionEvent event) throws IOException {
+    void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
 		setSelectedPlant();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
 		root = loader.load();	
