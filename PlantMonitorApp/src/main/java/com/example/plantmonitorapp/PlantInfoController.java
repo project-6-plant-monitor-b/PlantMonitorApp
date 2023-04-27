@@ -125,9 +125,9 @@ public class PlantInfoController {
         System.out.println("temp value is: " + tempValue);
         realTimePlant = new Plant();
         realTimePlant.setName(selectedPlant.getName());
-        realTimePlant.setTemp(Double.parseDouble(tempValue));   // Replace with real data
+        realTimePlant.setTemp(Double.parseDouble(tempValue));    // Replace with real data
         realTimePlant.setHumid(Double.parseDouble(humidValue));  // Replace with real data
-        realTimePlant.setLight(Double.parseDouble(lightValue));    // Replace with real data
-        realTimePlant.setSoil(Double.parseDouble(soilValue));   // Replace with real data
+        realTimePlant.setLight(Double.parseDouble(lightValue));  // Replace with real data
+        realTimePlant.setSoil(Double.parseDouble(soilValue));    // Replace with real data
     }
 }
