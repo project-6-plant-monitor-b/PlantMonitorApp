@@ -123,6 +123,7 @@ public class PlantInfoController {
         System.out.println("soil value is: " + soilValue);
         System.out.println("light value is: " + lightValue);
         System.out.println("temp value is: " + tempValue);
+        System.out.println("humid value is: " + humidValue);
         realTimePlant = new Plant();
         realTimePlant.setName(selectedPlant.getName());
         realTimePlant.setTemp(Double.parseDouble(tempValue));    // Replace with real data

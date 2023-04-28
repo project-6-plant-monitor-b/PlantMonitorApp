@@ -9,8 +9,5 @@
         <module name="PlantMonitorApp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="PlantMonitorApp" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
