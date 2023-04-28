@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.plantmonitorapp.AboutController">
+   <children>
+      <BorderPane layoutY="-3.0" prefHeight="408.0" prefWidth="600.0">
+         <left>
+            <VBox prefHeight="408.0" prefWidth="158.0" style="-fx-background-color: #395220;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#plantsClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Plants" />
+                  <Button mnemonicParsing="false" onAction="#plantInfoClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Plant Info" />
+                  <Button mnemonicParsing="false" onAction="#alertsClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Alerts" />
+                  <Button mnemonicParsing="false" onAction="#aboutClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #7f996b;" text="About" />
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <VBox prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #5d7d3d;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="nameLabel" prefHeight="45.0" prefWidth="602.0" text="Hello: ">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Hello from About Scene!" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

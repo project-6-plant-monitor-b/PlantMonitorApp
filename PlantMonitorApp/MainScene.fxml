@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.plantmonitorapp.MainController">
+   <children>
+      <BorderPane layoutY="-3.0" prefHeight="408.0" prefWidth="600.0">
+         <left>
+            <VBox prefHeight="408.0" prefWidth="158.0" style="-fx-background-color: #395220;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#plantsClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #7f996b;" text="Plants" />
+                  <Button mnemonicParsing="false" onAction="#plantInfoClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Plant Info" />
+                  <Button mnemonicParsing="false" onAction="#alertsClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Alerts" />
+                  <Button mnemonicParsing="false" onAction="#aboutClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="About" />
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <VBox prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #5d7d3d;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="nameLabel" prefHeight="37.0" prefWidth="600.0" text="Hello: @unpleasantwater  |  Connected to: @hilariousbaboon" textAlignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="plantTable" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="88.0" text="Plant" />
+                      <TableColumn fx:id="tempColumn" prefWidth="88.0" text="Ideal Temp" />
+                        <TableColumn fx:id="humidColumn" prefWidth="88.0" text="Ideal Humidity" />
+                        <TableColumn fx:id="lightColumn" prefWidth="88.0" text="Ideal Light" />
+                        <TableColumn fx:id="soilColumn" prefWidth="88.0" text="Ideal Soil" />
+                    </columns>
+                  </TableView>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="nameInput" layoutX="102.0" layoutY="39.0" />
+                        <TextField fx:id="tempInput" layoutX="102.0" layoutY="64.0" />
+                        <TextField fx:id="humidInput" layoutX="102.0" layoutY="89.0" />
+                        <TextField fx:id="lightInput" layoutX="102.0" layoutY="114.0" />
+                        <TextField fx:id="soilInput" layoutX="102.0" layoutY="139.0" />
+                        <Label layoutX="14.0" layoutY="43.0" text="Plant Name" />
+                        <Label layoutX="14.0" layoutY="68.0" text="Ideal Temp" />
+                        <Label layoutX="14.0" layoutY="93.0" text="Ideal Humidity" />
+                        <Label fx:id="idealLightField" layoutX="14.0" layoutY="118.0" text="Ideal Light" />
+                        <Label layoutX="14.0" layoutY="143.0" text="Ideal Soil" />
+                        <Label layoutX="257.0" layoutY="68.0" text="deg. F" />
+                        <Label layoutX="257.0" layoutY="93.0" text="\%" />
+                        <Label layoutX="257.0" layoutY="118.0" text="lumens" />
+                        <Label layoutX="257.0" layoutY="143.0" text="\%" />
+                        <Button layoutX="327.0" layoutY="99.0" mnemonicParsing="false" onAction="#addPlant" prefHeight="54.0" prefWidth="60.0" text="Add Plant" textAlignment="CENTER" wrapText="true" />
+                        <Label layoutX="12.0" layoutY="7.0" text="Add a new plant:">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="327.0" layoutY="24.0" mnemonicParsing="false" onAction="#removePlant" prefHeight="54.0" prefWidth="60.0" text="Remove Plant" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
