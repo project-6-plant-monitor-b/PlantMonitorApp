@@ -94,10 +94,10 @@ public class PlantInfoController {
             }
         }
 
-        humidAlert.setText(alerts[0]);
-        lightAlert.setText(alerts[1]);
-        soilAlert.setText(alerts[2]);
-        tempAlert.setText(alerts[3]);
+        tempAlert.setText(alerts[0]);
+        humidAlert.setText(alerts[1]);
+        lightAlert.setText(alerts[2]);
+        soilAlert.setText(alerts[3]);
 
     }
 
