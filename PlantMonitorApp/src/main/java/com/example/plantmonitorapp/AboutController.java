@@ -30,13 +30,11 @@ public class AboutController {
 
 
 
-	public void displayName(String user, String monitor, ObservableList<Plant> allPlants, Plant selectedPlant, Plant realTimePlant) {
-		userSign = user;
-		monitorSign = monitor;
+	public void initialize(ObservableList<Plant> allPlants, Plant selectedPlant, Plant realTimePlant) {
 		this.allPlants = allPlants;
 		this.selectedPlant = selectedPlant;
 		this.realTimePlant = realTimePlant;
-		nameLabel.setText("Hello: " + user + "!\t\tConnected to: " + monitor);
+		nameLabel.setText("Hello @unpleasantwater!  |  Connected to: @hilariousbaboon");
 		System.out.println(selectedPlant.getName());
 	}
 
@@ -50,7 +48,7 @@ public class AboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));	
 		root = loader.load();	
 		AlertsController alertsController = loader.getController();
-		alertsController.displayName(userSign, monitorSign, allPlants, selectedPlant,realTimePlant);
+		alertsController.initialize(allPlants, selectedPlant,realTimePlant);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -62,7 +60,8 @@ public class AboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
 		root = loader.load();	
 		PlantInfoController piController = loader.getController();
-		piController.displayName(userSign, monitorSign, allPlants, selectedPlant,realTimePlant);
+		piController.initialize(allPlants, selectedPlant,realTimePlant);
+		piController.setSensorData();
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -74,7 +73,7 @@ public class AboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));	
 		root = loader.load();	
 		MainController mainController = loader.getController();
-		mainController.displayName(userSign, monitorSign, allPlants, selectedPlant,realTimePlant);
+		mainController.initialize(allPlants, selectedPlant,realTimePlant);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

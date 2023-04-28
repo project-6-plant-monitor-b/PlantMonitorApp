@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.plantmonitorapp.PlantInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.plantmonitorapp.PlantInfoController">
    <children>
       <BorderPane layoutY="-3.0" prefHeight="408.0" prefWidth="600.0">
          <left>
@@ -25,9 +25,9 @@
          <top>
             <VBox prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #5d7d3d;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="nameLabel" text="Hello: ">
+                  <Label fx:id="nameLabel" prefHeight="41.0" prefWidth="600.0" text="Hello: ">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="21.0" />
                      </font>
                   </Label>
                </children>
@@ -38,46 +38,50 @@
                <children>
                   <HBox prefHeight="93.0" prefWidth="442.0">
                      <children>
-                        <Label prefHeight="92.0" prefWidth="204.0" style="-fx-background-color: #f5fcf0;" text="Temperature:" textAlignment="CENTER" textFill="#3b4828">
+                        <Label prefHeight="80.0" prefWidth="126.0" style="-fx-background-color: #f5fcf0;" text="Temperature:" textAlignment="CENTER" textFill="#3b4828">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="tempMeasurement" prefHeight="91.0" prefWidth="116.0" style="-fx-background-color: #f5fcf0;" text="tempMeasurement" />
-                        <Label prefHeight="91.0" prefWidth="125.0" style="-fx-background-color: #f5fcf0;" text="[insert unit]" />
+                        <Label fx:id="tempMeasurement" prefHeight="80.0" prefWidth="61.0" style="-fx-background-color: #f5fcf0;" text="tempMeasurement" />
+                        <Label prefHeight="80.0" prefWidth="61.0" style="-fx-background-color: #f5fcf0;" text="° F" />
+                        <Label fx:id="tempAlert" prefHeight="80.0" prefWidth="193.0" style="-fx-background-color: #f5fcf0;" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="93.0" prefWidth="442.0">
                      <children>
-                        <Label prefHeight="92.0" prefWidth="204.0" style="-fx-background-color: #bdc4b9;" text="Humidity:" textFill="#3b4828">
+                        <Label prefHeight="80.0" prefWidth="126.0" style="-fx-background-color: #bdc4b9;" text="Humidity:" textFill="#3b4828">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="humidMeasurement" prefHeight="91.0" prefWidth="116.0" style="-fx-background-color: #bdc4b9;" text="humidMeasurement" />
-                        <Label prefHeight="91.0" prefWidth="124.0" style="-fx-background-color: #bdc4b9;" text="[insert unit]" />
+                        <Label fx:id="humidMeasurement" prefHeight="91.0" prefWidth="61.0" style="-fx-background-color: #bdc4b9;" text="humidMeasurement" />
+                        <Label prefHeight="91.0" prefWidth="61.0" style="-fx-background-color: #bdc4b9;" text="\%" />
+                        <Label fx:id="humidAlert" prefHeight="80.0" prefWidth="193.0" style="-fx-background-color: #bdc4b9;" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="97.0" prefWidth="442.0">
                      <children>
-                        <Label prefHeight="92.0" prefWidth="204.0" style="-fx-background-color: #f5fcf0;" text="Light:" textFill="#3b4828">
+                        <Label prefHeight="92.0" prefWidth="126.0" style="-fx-background-color: #f5fcf0;" text="Light:" textFill="#3b4828">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lightMeasurement" prefHeight="91.0" prefWidth="116.0" style="-fx-background-color: #f5fcf0;" text="lightMeasurement" />
-                        <Label prefHeight="91.0" prefWidth="124.0" style="-fx-background-color: #f5fcf0;" text="[insert unit]" />
+                        <Label fx:id="lightMeasurement" prefHeight="91.0" prefWidth="61.0" style="-fx-background-color: #f5fcf0;" text="lightMeasurement" />
+                        <Label prefHeight="91.0" prefWidth="61.0" style="-fx-background-color: #f5fcf0;" text="lux" />
+                        <Label fx:id="lightAlert" prefHeight="84.0" prefWidth="193.0" style="-fx-background-color: #f5fcf0;" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="98.0" prefWidth="442.0">
                      <children>
-                        <Label prefHeight="92.0" prefWidth="204.0" style="-fx-background-color: #bdc4b9;" text="Soil:" textFill="#3b4828">
+                        <Label prefHeight="92.0" prefWidth="126.0" style="-fx-background-color: #bdc4b9;" text="Soil:" textFill="#3b4828">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="soilMeasurement" prefHeight="91.0" prefWidth="116.0" style="-fx-background-color: #bdc4b9;" text="soilMeasurement" />
-                        <Label prefHeight="91.0" prefWidth="128.0" style="-fx-background-color: #bdc4b9;" text="[insert unit]" />
+                        <Label fx:id="soilMeasurement" prefHeight="91.0" prefWidth="61.0" style="-fx-background-color: #bdc4b9;" text="soilMeasurement" />
+                        <Label prefHeight="91.0" prefWidth="61.0" style="-fx-background-color: #bdc4b9;" text="\%" />
+                        <Label fx:id="soilAlert" prefHeight="85.0" prefWidth="193.0" style="-fx-background-color: #bdc4b9;" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="54.0" prefWidth="442.0">

@@ -24,9 +24,9 @@
          <top>
             <VBox prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #5d7d3d;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="nameLabel" text="Hello: ">
+                  <Label fx:id="nameLabel" prefHeight="53.0" prefWidth="600.0" text="Hello: ">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="21.0" />
                      </font>
                   </Label>
                </children>
