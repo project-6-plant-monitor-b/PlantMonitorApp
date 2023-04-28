@@ -1,7 +1,6 @@
 package com.example.plantmonitorapp;
 import java.io.IOException;
 
-import com.example.plantmonitorapp.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.atsign.client.api.AtClient;
-import org.atsign.common.AtSign;
 
 public class LoginController {
 
@@ -78,7 +75,7 @@ public class LoginController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));	
 		root = loader.load();	
 		MainController scene2Controller = loader.getController();
-		scene2Controller.displayName(userSign, monitorSign);
+		scene2Controller.initialize(userSign, monitorSign);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
