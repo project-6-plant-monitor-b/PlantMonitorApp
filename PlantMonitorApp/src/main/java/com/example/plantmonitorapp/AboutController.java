@@ -45,11 +45,11 @@ public class AboutController {
 
     @FXML
     void alertsClicked(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));	
-		root = loader.load();	
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));
+		root = loader.load();
 		AlertsController alertsController = loader.getController();
-		alertsController.initialize(allPlants, selectedPlant,realTimePlant);
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		alertsController.initialize(allPlants, selectedPlant, realTimePlant);
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -57,12 +57,12 @@ public class AboutController {
 
     @FXML
     void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
-		root = loader.load();	
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
+		root = loader.load();
 		PlantInfoController piController = loader.getController();
-		piController.initialize(allPlants, selectedPlant,realTimePlant);
+		piController.initialize(allPlants, selectedPlant, realTimePlant);
 		piController.setSensorData();
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -70,11 +70,11 @@ public class AboutController {
 
     @FXML
     void plantsClicked(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));	
-		root = loader.load();	
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
+		root = loader.load();
 		MainController mainController = loader.getController();
-		mainController.initialize(allPlants, selectedPlant,realTimePlant);
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		mainController.initialize(allPlants, selectedPlant, realTimePlant);
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

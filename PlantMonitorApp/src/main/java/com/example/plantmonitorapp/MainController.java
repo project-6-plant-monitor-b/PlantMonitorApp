@@ -47,6 +47,7 @@ public class MainController implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	private boolean flag;
 	ObservableList<Plant> allPlants;
 	Plant selectedPlant;
 	Plant realTimePlant;
@@ -146,50 +147,57 @@ public class MainController implements Initializable {
 
 	public void setSelectedPlant() {
 		selectedPlant = plantTable.getSelectionModel().getSelectedItem();
+		flag = true;
 	}
 
 	@FXML
     void aboutClicked(ActionEvent event) throws IOException {
 		setSelectedPlant();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));	
-		root = loader.load();	
-		AboutController aboutController = loader.getController();
-		aboutController.initialize(allPlants, selectedPlant,realTimePlant);
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if(selectedPlant != null){
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
+			root = loader.load();
+			AboutController aboutController = loader.getController();
+			aboutController.initialize(allPlants, selectedPlant, realTimePlant);
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
     }
 
     @FXML
     void alertsClicked(ActionEvent event) throws IOException {
 		setSelectedPlant();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));	
-		root = loader.load();	
-		AlertsController alertsController = loader.getController();
-		alertsController.initialize(allPlants, selectedPlant,realTimePlant);
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if(selectedPlant != null){
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));
+			root = loader.load();
+			AlertsController alertsController = loader.getController();
+			alertsController.initialize(allPlants, selectedPlant, realTimePlant);
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
     }
 
     @FXML
     void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
 		setSelectedPlant();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));	
-		root = loader.load();	
-		PlantInfoController piController = loader.getController();
-		piController.initialize(allPlants, selectedPlant,realTimePlant);
-		piController.setSensorData();
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if(selectedPlant != null){
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
+			root = loader.load();
+			PlantInfoController piController = loader.getController();
+			piController.initialize(allPlants, selectedPlant, realTimePlant);
+			piController.setSensorData();
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
     }
 
     @FXML
     void plantsClicked(ActionEvent event) {
-		// leave blank
+		//leave blank
     }
 }
