@@ -35,7 +35,7 @@ public class AlertsController {
 		this.allPlants = allPlants;
 		this.selectedPlant = selectedPlant;
 		this.realTimePlant = realTimePlant;
-		nameLabel.setText("Hello @unpleasantwater!  |  Connected to: @hilariousbaboon");
+		nameLabel.setText("Hello @unpleasantwater!");
 		addAlerts();
 	}
 
@@ -51,11 +51,11 @@ public class AlertsController {
 
 	@FXML
     void aboutClicked(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
 		root = loader.load();
 		AboutController aboutController = loader.getController();
-		aboutController.initialize(allPlants, selectedPlant, realTimePlant);
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		aboutController.initialize(allPlants, selectedPlant,realTimePlant);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -68,12 +68,12 @@ public class AlertsController {
 
     @FXML
     void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
 		root = loader.load();
 		PlantInfoController piController = loader.getController();
-		piController.initialize(allPlants, selectedPlant, realTimePlant);
+		piController.initialize(allPlants, selectedPlant,realTimePlant);
 		piController.setSensorData();
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -81,11 +81,11 @@ public class AlertsController {
 
     @FXML
     void plantsClicked(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
 		root = loader.load();
 		MainController mainController = loader.getController();
-		mainController.initialize(allPlants, selectedPlant, realTimePlant);
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		mainController.initialize(allPlants, selectedPlant,realTimePlant);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

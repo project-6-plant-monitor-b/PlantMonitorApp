@@ -2,6 +2,7 @@ package com.example.plantmonitorapp;
 
 public class Plant {
 
+    private String sensorAtSign;
     private String name;
     private double temp;
     private double humid;
@@ -10,7 +11,8 @@ public class Plant {
 
     public Plant(){}
 
-    public Plant(String name, double temp, double humid, double light, double soil) {
+    public Plant(String sensorAtSign, String name, double temp, double humid, double light, double soil) {
+        this.sensorAtSign = sensorAtSign;
         this.name = name;
         this.temp = temp;
         this.humid = humid;
@@ -21,7 +23,6 @@ public class Plant {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -29,7 +30,6 @@ public class Plant {
     public double getTemp() {
         return temp;
     }
-
     public void setTemp(double temp) {
         this.temp = temp;
     }
@@ -37,7 +37,6 @@ public class Plant {
     public double getHumid() {
         return humid;
     }
-
     public void setHumid(double humid) {
         this.humid = humid;
     }
@@ -55,4 +54,13 @@ public class Plant {
     public double getSoil() {
         return soil;
     }
+
+    public void setAtSign(String sensorAtSign) {
+        this.sensorAtSign = sensorAtSign;
+    }
+    public String getAtSign() {
+        return sensorAtSign;
+    }
+
+
 }

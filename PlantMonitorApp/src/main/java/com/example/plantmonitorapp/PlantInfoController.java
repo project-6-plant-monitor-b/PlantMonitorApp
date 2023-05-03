@@ -1,7 +1,6 @@
 package com.example.plantmonitorapp;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-import java.lang.Object;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,18 +24,19 @@ public class PlantInfoController {
     @FXML public Label lightMeasurement;
     @FXML public Label soilMeasurement;
     @FXML public Label tempMeasurement;
-    @FXML private Label humidAlert;
-    @FXML private Label lightAlert;
-    @FXML private Label soilAlert;
-    @FXML private Label tempAlert;
+    @FXML public Label humidAlert;
+    @FXML public Label lightAlert;
+    @FXML public Label soilAlert;
+    @FXML public Label tempAlert;
+    @FXML public Label plantCornerLabel;
 
-    public String userSign;
-    public String monitorSign;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+
+    public Stage stage;
+    public Scene scene;
+    public Parent root;
 
     ObservableList<Plant> allPlants;
+    @FXML
     Plant selectedPlant;
     Plant realTimePlant;
 
@@ -49,58 +49,61 @@ public class PlantInfoController {
         } else {
             this.realTimePlant = realTimePlant;
         }
-        nameLabel.setText("Hello @unpleasantwater!  |  Connected to: @hilariousbaboon");
+        nameLabel.setText("Hello @unpleasantwater!");
+
+
     }
 
     void setSensorData() throws AtException, ExecutionException, InterruptedException {
-        //if(this.selectedPlant != null) {
-            AtSign esp32 = new AtSign("@hilariousbaboon");
-            AtSign java = new AtSign("@unpleasantwater");
-            AtClient atClient = AtClient.withRemoteSecondary("root.atsign.org:64", java, false);
-            Keys.SharedKey soilKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("soil").build();
-            Keys.SharedKey tempKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("temp").build();
-            Keys.SharedKey humidKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("humid").build();
-            Keys.SharedKey lightKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("light").build();
-            String soilValue = atClient.get(soilKey).get();
-            String tempValue = atClient.get(tempKey).get();
-            String humidValue = atClient.get(humidKey).get();
-            String lightValue = atClient.get(lightKey).get();
-            realTimePlant = new Plant();
-            realTimePlant.setName(selectedPlant.getName());
-            realTimePlant.setTemp(Double.parseDouble(tempValue) * ((double) 9 / 5) + 32);
-            realTimePlant.setHumid(Double.parseDouble(humidValue));
-            realTimePlant.setLight(Double.parseDouble(lightValue));
-            realTimePlant.setSoil(Double.parseDouble(soilValue));
-            tempMeasurement.setText(String.valueOf(realTimePlant.getTemp()));
-            humidMeasurement.setText(String.valueOf(realTimePlant.getHumid()));
-            lightMeasurement.setText(String.valueOf(realTimePlant.getLight()));
-            soilMeasurement.setText(String.valueOf(realTimePlant.getSoil()));
-
-            double[] selectedData = {selectedPlant.getTemp(),
-                    selectedPlant.getHumid(),
-                    selectedPlant.getLight(),
-                    selectedPlant.getSoil()};
-            double[] realTimeData = {realTimePlant.getTemp(),
-                    realTimePlant.getHumid(),
-                    realTimePlant.getLight(),
-                    realTimePlant.getSoil()};
-            String[] variable = {"temp", "air humidity", "light", "soil humidity"};
-            String[] alerts = new String[4];
-            for (int i = 0; i < 4; i++) {
-                if (selectedData[i] > realTimeData[i] * 1.25) {
-                    alerts[i] = (realTimePlant.getName() + " needs lower " + variable[i] + ".\n");
-                } else if (selectedData[i] < realTimeData[i] * .75) {
-                    alerts[i] = (realTimePlant.getName() + " needs higher " + variable[i] + ".\n");
-                } else {
-                    alerts[i] = (realTimePlant.getName() + "'s " + variable[i] + " is good.\n");
-                }
+        //AtSign esp32 = new AtSign("@hilariousbaboon");
+        AtSign esp32 = new AtSign(selectedPlant.getAtSign());
+        AtSign java = new AtSign("@unpleasantwater");
+        AtClient atClient = AtClient.withRemoteSecondary("root.atsign.org:64", java,  false);
+        Keys.SharedKey soilKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("soil").build();
+        Keys.SharedKey tempKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("temp").build();
+        Keys.SharedKey humidKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("humid").build();
+        Keys.SharedKey lightKey = new KeyBuilders.SharedKeyBuilder(esp32, java).key("light").build();
+        String soilValue = atClient.get(soilKey).get();
+        String tempValue = atClient.get(tempKey).get();
+        String humidValue = atClient.get(humidKey).get();
+        String lightValue = atClient.get(lightKey).get();
+        realTimePlant = new Plant();
+        realTimePlant.setAtSign(selectedPlant.getAtSign());
+        realTimePlant.setName(selectedPlant.getName());
+        realTimePlant.setTemp(Double.parseDouble(tempValue) * ((double) 9 / 5) + 32);
+        realTimePlant.setHumid(Double.parseDouble(humidValue));
+        realTimePlant.setLight(Double.parseDouble(lightValue));
+        realTimePlant.setSoil(Double.parseDouble(soilValue));
+        tempMeasurement.setText(String.valueOf(realTimePlant.getTemp()));
+        humidMeasurement.setText(String.valueOf(realTimePlant.getHumid()));
+        lightMeasurement.setText(String.valueOf(realTimePlant.getLight()));
+        soilMeasurement.setText(String.valueOf(realTimePlant.getSoil()));
+        double[] selectedData = {selectedPlant.getTemp(),
+                selectedPlant.getHumid(),
+                selectedPlant.getLight(),
+                selectedPlant.getSoil()};
+        double[] realTimeData = {realTimePlant.getTemp(),
+                realTimePlant.getHumid(),
+                realTimePlant.getLight(),
+                realTimePlant.getSoil()};
+        String[] variable = {"temp", "air humidity", "light", "soil humidity"};
+        String[] alerts = new String[4];
+        for (int i = 0; i < 4; i++) {
+            if (selectedData[i] > realTimeData[i] * 1.25) {
+                alerts[i] = (realTimePlant.getName() + " needs lower " + variable[i] + ".\n");
+            } else if (selectedData[i] < realTimeData[i] * .75){
+                alerts[i] = (realTimePlant.getName() + " needs higher " + variable[i] + ".\n");
+            } else {
+                alerts[i] = (realTimePlant.getName() + "'s " + variable[i] + " is good.\n");
             }
+        }
 
-            tempAlert.setText(alerts[0]);
-            humidAlert.setText(alerts[1]);
-            lightAlert.setText(alerts[2]);
-            soilAlert.setText(alerts[3]);
-        //}
+        tempAlert.setText(alerts[0]);
+        humidAlert.setText(alerts[1]);
+        lightAlert.setText(alerts[2]);
+        soilAlert.setText(alerts[3]);
+        plantCornerLabel.setText(realTimePlant.getName());
+
     }
 
     @FXML
@@ -108,8 +111,8 @@ public class PlantInfoController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
         root = loader.load();
         AboutController aboutController = loader.getController();
-        aboutController.initialize(allPlants, selectedPlant, realTimePlant);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        aboutController.initialize(allPlants, selectedPlant,realTimePlant);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -121,7 +124,7 @@ public class PlantInfoController {
         root = loader.load();
         AlertsController alertsController = loader.getController();
         alertsController.initialize(allPlants, selectedPlant, realTimePlant);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -134,20 +137,21 @@ public class PlantInfoController {
 
     @FXML
     void plantsClicked(ActionEvent event) throws IOException {
-        System.out.println("plantsclicked plantinfocontroller");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
         root = loader.load();
         MainController mainController = loader.getController();
-        mainController.initialize(allPlants, selectedPlant, realTimePlant);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainController.initialize(allPlants, selectedPlant,realTimePlant);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
     void resetClicked(ActionEvent event) throws AtException, ExecutionException, InterruptedException {
         setSensorData();
     }
+
+
+
 }

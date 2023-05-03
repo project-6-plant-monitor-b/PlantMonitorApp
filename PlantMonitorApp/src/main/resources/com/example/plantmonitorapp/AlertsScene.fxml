@@ -3,26 +3,56 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.plantmonitorapp.AlertsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@plants.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.plantmonitorapp.AlertsController">
    <children>
       <BorderPane layoutY="-3.0" prefHeight="408.0" prefWidth="600.0">
          <left>
-            <VBox prefHeight="408.0" prefWidth="158.0" style="-fx-background-color: #395220;" BorderPane.alignment="CENTER">
+            <VBox fx:id="sidepanel" prefHeight="309.0" prefWidth="158.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#plantsClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Plants" />
-                  <Button mnemonicParsing="false" onAction="#plantInfoClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="Plant Info" />
-                  <Button mnemonicParsing="false" onAction="#alertsClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #7f996b;" text="Alerts" />
-                  <Button mnemonicParsing="false" onAction="#aboutClicked" prefHeight="41.0" prefWidth="158.0" style="-fx-background-color: #c6d6ba;" text="About" />
+                  <Button fx:id="buttonLabel" mnemonicParsing="false" onAction="#plantsClicked" prefHeight="70.0" prefWidth="158.0" text="Plants">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" translateX="-16.0">
+                           <image>
+                              <Image url="@leaf.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="buttonLabel" mnemonicParsing="false" onAction="#plantInfoClicked" prefHeight="70.0" prefWidth="158.0" text="Plant Info">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" rotate="-32.0" translateX="-11.0">
+                           <image>
+                              <Image url="@46273.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="ClickedLabel" mnemonicParsing="false" onAction="#alertsClicked" prefHeight="70.0" prefWidth="158.0" text="Alerts">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" rotate="15.0" translateX="-24.0">
+                           <image>
+                              <Image url="@bell.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="buttonLabel" mnemonicParsing="false" onAction="#aboutClicked" prefHeight="70.0" prefWidth="158.0" text="About">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" translateX="-24.0">
+                           <image>
+                              <Image url="@info.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </VBox>
          </left>
          <top>
-            <VBox prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #5d7d3d;" BorderPane.alignment="CENTER">
+            <VBox fx:id="topbox" prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="nameLabel" prefHeight="53.0" prefWidth="600.0" text="Hello: ">
                      <font>
@@ -33,11 +63,11 @@
             </VBox>
          </top>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="vboxback" prefHeight="164.0" prefWidth="442.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Alerts:" />
                   <ListView fx:id="alertList" prefHeight="200.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#removeAlert" prefHeight="55.0" prefWidth="70.0" text="Remove Alert" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="removeLabel" mnemonicParsing="false" onAction="#removeAlert" prefHeight="55.0" prefWidth="98.0" text="Remove Alert" textAlignment="CENTER" translateX="162.0" translateY="12.0" wrapText="true" />
                </children>
             </VBox>
          </center>
