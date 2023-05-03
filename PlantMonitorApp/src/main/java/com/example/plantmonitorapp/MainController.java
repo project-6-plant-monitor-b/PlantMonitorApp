@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.atsign.common.AtException;
@@ -26,28 +23,33 @@ import java.util.concurrent.ExecutionException;
 public class MainController implements Initializable {
 
 	@FXML Label nameLabel;
-	@FXML private TableView<Plant> plantTable;
+	@FXML public TableView<Plant> plantTable;
 
 	//Columns
-	@FXML private TableColumn<Plant, String> nameColumn;
-	@FXML private TableColumn<Plant, Double> tempColumn;
-	@FXML private TableColumn<Plant, Double> humidColumn;
-	@FXML private TableColumn<Plant, Double> lightColumn;
-	@FXML private TableColumn<Plant, Double> soilColumn;
+	@FXML public TableColumn<Plant, String> nameColumn;
+	@FXML public TableColumn<Plant, String> tempColumn;
+	@FXML public TableColumn<Plant, String> humidColumn;
+	@FXML public TableColumn<Plant, String> lightColumn;
+	@FXML public TableColumn<Plant, String> soilColumn;
 
 	//Text input
-	@FXML private TextField nameInput;
-	@FXML private TextField tempInput;
-	@FXML private TextField humidInput;
-	@FXML private TextField lightInput;
-	@FXML private TextField soilInput;
+	@FXML public TextField nameInput;
+	//@FXML public TextField tempInput;
+	//@FXML public TextField humidInput;
+	//@FXML public TextField lightInput;
+	//@FXML public TextField soilInput;
+	@FXML public TextField atSignInput;
+
+	@FXML private ChoiceBox<String> tempChoiceBox;
+	@FXML private ChoiceBox<String> humidChoiceBox;
+	@FXML private ChoiceBox<String> lightChoiceBox;
+	@FXML private ChoiceBox<String> soilChoiceBox;
 
 	public String userSign;
 	public String monitorSign;
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
-	private boolean flag;
+	public Stage stage;
+	public Scene scene;
+	public Parent root;
 	ObservableList<Plant> allPlants;
 	Plant selectedPlant;
 	Plant realTimePlant;
@@ -55,13 +57,20 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		nameLabel.setText("Hello @unpleasantwater!  |  Connected to: @hilariousbaboon");
+		nameLabel.setText("Hello @unpleasantwater!");
 		nameColumn.setCellValueFactory(new PropertyValueFactory<Plant, String>("name"));
-		tempColumn.setCellValueFactory(new PropertyValueFactory<Plant, Double>("temp"));
-		humidColumn.setCellValueFactory(new PropertyValueFactory<Plant, Double>("humid"));
-		lightColumn.setCellValueFactory(new PropertyValueFactory<Plant, Double>("light"));
-		soilColumn.setCellValueFactory(new PropertyValueFactory<Plant, Double>("soil"));
+		tempColumn.setCellValueFactory(new PropertyValueFactory<Plant, String>("temp"));
+		humidColumn.setCellValueFactory(new PropertyValueFactory<Plant, String>("humid"));
+		lightColumn.setCellValueFactory(new PropertyValueFactory<Plant, String>("light"));
+		soilColumn.setCellValueFactory(new PropertyValueFactory<Plant, String>("soil"));
 		allPlants = plantTable.getItems();
+
+		String[] options = {"low", "moderate", "high"};
+		tempChoiceBox.getItems().addAll(options);
+		humidChoiceBox.getItems().addAll(options);
+		lightChoiceBox.getItems().addAll(options);
+		soilChoiceBox.getItems().addAll(options);
+
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader("plants.txt"));
@@ -70,10 +79,11 @@ public class MainController implements Initializable {
 			while (line != null) {
 				String[] plantInfo = line.split(",");
 				Plant plant = new Plant(plantInfo[0],
-						Double.parseDouble(plantInfo[1]),
-						Double.parseDouble(plantInfo[2]),
-						Double.parseDouble(plantInfo[2]),
-						Double.parseDouble(plantInfo[2]));
+						plantInfo[1],
+						plantInfo[2],
+						plantInfo[3],
+						plantInfo[4],
+						plantInfo[5]);
 				allPlants.add(plant);
 				line = reader.readLine();
 			}
@@ -86,19 +96,21 @@ public class MainController implements Initializable {
 
 	@FXML
 	void addPlant(ActionEvent event) throws IOException {
-		Plant plant = new Plant(nameInput.getText(),
-				Double.parseDouble(tempInput.getText()),
-				Double.parseDouble(humidInput.getText()),
-				Double.parseDouble(lightInput.getText()),
-				Double.parseDouble(soilInput.getText()));
+		Plant plant = new Plant(atSignInput.getText(),
+				nameInput.getText(),
+				tempChoiceBox.getValue(),
+				humidChoiceBox.getValue(),
+				lightChoiceBox.getValue(),
+				soilChoiceBox.getValue());
 		allPlants = plantTable.getItems();
 		allPlants.add(plant);
 		plantTable.setItems(allPlants);
+		atSignInput.clear();
 		nameInput.clear();
-		tempInput.clear();
-		humidInput.clear();
-		lightInput.clear();
-		soilInput.clear();
+		tempChoiceBox.setValue(null);
+		humidChoiceBox.setValue(null);
+		lightChoiceBox.setValue(null);
+		soilChoiceBox.setValue(null);
 
 		// Writing to a file for storage
 		FileWriter fw = new FileWriter("plants.txt",false);
@@ -106,7 +118,7 @@ public class MainController implements Initializable {
 		Iterator<Plant> plantIterator = allPlants.iterator();
 		while (plantIterator.hasNext()) {
 			Plant thisPlant = plantIterator.next();
-			out.print(thisPlant.getName() + "," + thisPlant.getTemp() + ","
+			out.print(thisPlant.getAtSign() + "," + thisPlant.getName() + "," + thisPlant.getTemp() + ","
 			         + thisPlant.getHumid() + "," + thisPlant.getLight() + ","
 			         + thisPlant.getSoil() + "\n");
 		}
@@ -124,7 +136,7 @@ public class MainController implements Initializable {
 		Iterator<Plant> plantIterator = allPlants.iterator();
 		while (plantIterator.hasNext()) {
 			Plant thisPlant = plantIterator.next();
-			out.print(thisPlant.getName() + "," + thisPlant.getTemp() + ","
+			out.print(thisPlant.getAtSign() + "," + thisPlant.getName() + "," + thisPlant.getTemp() + ","
 					+ thisPlant.getHumid() + "," + thisPlant.getLight() + ","
 					+ thisPlant.getSoil() + "\n");
 		}
@@ -134,7 +146,7 @@ public class MainController implements Initializable {
 	public void initialize(String user, String monitor) {
 		userSign = user;
 		monitorSign = monitor;
-		nameLabel.setText("Hello @unpleasantwater!"  + "\t\tConnected to: @hilariousbaboon");
+		nameLabel.setText("Hello @unpleasantwater!");
 	}
 
 
@@ -142,23 +154,22 @@ public class MainController implements Initializable {
 		this.allPlants = allPlants;
 		this.selectedPlant = selectedPlant;
 		this.realTimePlant = realTimePlant;
-		nameLabel.setText("Hello @unpleasantwater!"  + "\t\tConnected to: @hilariousbaboon");
+		nameLabel.setText("Hello @unpleasantwater!");
 	}
 
 	public void setSelectedPlant() {
 		selectedPlant = plantTable.getSelectionModel().getSelectedItem();
-		flag = true;
 	}
 
 	@FXML
     void aboutClicked(ActionEvent event) throws IOException {
 		setSelectedPlant();
-		if(selectedPlant != null){
+		if (selectedPlant != null) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
 			root = loader.load();
 			AboutController aboutController = loader.getController();
-			aboutController.initialize(allPlants, selectedPlant, realTimePlant);
-			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			aboutController.initialize(allPlants, selectedPlant,realTimePlant);
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
@@ -168,7 +179,7 @@ public class MainController implements Initializable {
     @FXML
     void alertsClicked(ActionEvent event) throws IOException {
 		setSelectedPlant();
-		if(selectedPlant != null){
+		if (selectedPlant != null) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("AlertsScene.fxml"));
 			root = loader.load();
 			AlertsController alertsController = loader.getController();
@@ -183,7 +194,7 @@ public class MainController implements Initializable {
     @FXML
     void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
 		setSelectedPlant();
-		if(selectedPlant != null){
+		if (selectedPlant != null) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
 			root = loader.load();
 			PlantInfoController piController = loader.getController();
@@ -198,6 +209,6 @@ public class MainController implements Initializable {
 
     @FXML
     void plantsClicked(ActionEvent event) {
-		//leave blank
+		// leave blank
     }
 }

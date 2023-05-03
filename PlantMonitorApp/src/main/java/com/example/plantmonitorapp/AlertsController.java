@@ -35,7 +35,7 @@ public class AlertsController {
 		this.allPlants = allPlants;
 		this.selectedPlant = selectedPlant;
 		this.realTimePlant = realTimePlant;
-		nameLabel.setText("Hello @unpleasantwater!  |  Connected to: @hilariousbaboon");
+		nameLabel.setText("Hello @unpleasantwater!");
 		addAlerts();
 	}
 
@@ -51,11 +51,11 @@ public class AlertsController {
 
 	@FXML
     void aboutClicked(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AboutScene.fxml"));
 		root = loader.load();
 		AboutController aboutController = loader.getController();
-		aboutController.initialize(allPlants, selectedPlant, realTimePlant);
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		aboutController.initialize(allPlants, selectedPlant,realTimePlant);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -68,12 +68,12 @@ public class AlertsController {
 
     @FXML
     void plantInfoClicked(ActionEvent event) throws IOException, AtException, ExecutionException, InterruptedException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlantInfoScene.fxml"));
 		root = loader.load();
 		PlantInfoController piController = loader.getController();
-		piController.initialize(allPlants, selectedPlant, realTimePlant);
+		piController.initialize(allPlants, selectedPlant,realTimePlant);
 		piController.setSensorData();
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -81,17 +81,58 @@ public class AlertsController {
 
     @FXML
     void plantsClicked(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
 		root = loader.load();
 		MainController mainController = loader.getController();
-		mainController.initialize(allPlants, selectedPlant, realTimePlant);
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		mainController.initialize(allPlants, selectedPlant,realTimePlant);
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
     }
 
 	void addAlerts() {
+
+		String[] selectedData = {selectedPlant.getTemp(),
+				selectedPlant.getHumid(),
+				selectedPlant.getLight(),
+				selectedPlant.getSoil()};
+		String[] realTimeData = {realTimePlant.getTemp(),
+				realTimePlant.getHumid(),
+				realTimePlant.getLight(),
+				realTimePlant.getSoil()};
+		String[] variable = {"temp", "air humidity", "light", "soil humidity"};
+
+		String[] alerts = new String[4];
+
+		String[] ranges = realTimePlant.getRealTimeRanges();
+
+
+		for (int i = 0; i < 4; i++) {
+
+			if (selectedData[i].equals(ranges[i])) {
+				alertList.getItems().add(realTimePlant.getName() + "'s " + variable[i] + " is in a good range.\n");
+			} else if (selectedData[i].equals("low") && (ranges[i].equals("moderate") || ranges[i].equals("high"))){
+				alertList.getItems().add(realTimePlant.getName() + " needs lower " + variable[i] + ".\n");
+			} else if (selectedData[i].equals("high") && (ranges[i].equals("moderate") || ranges[i].equals("low"))){
+				alertList.getItems().add(realTimePlant.getName() + " needs higher " + variable[i] + ".\n");
+			} else if (selectedData[i].equals("moderate")) {
+				if (ranges[i].equals("low")) {
+					alertList.getItems().add(realTimePlant.getName() + " needs higher " + variable[i] + ".\n");
+				}
+				if (ranges[i].equals("high")) {
+					alertList.getItems().add(realTimePlant.getName() + " needs lower " + variable[i] + ".\n");
+				}
+			}
+		}
+
+/*
+		tempAlert.setText(alerts[0]);
+		humidAlert.setText(alerts[1]);
+		lightAlert.setText(alerts[2]);
+		soilAlert.setText(alerts[3]);
+		plantCornerLabel.setText(realTimePlant.getName());
+
 		double[] selectedData = {selectedPlant.getTemp(),
 				selectedPlant.getHumid(),
 				selectedPlant.getLight(),
@@ -100,6 +141,9 @@ public class AlertsController {
 				realTimePlant.getHumid(),
 				realTimePlant.getLight(),
 				realTimePlant.getSoil()};
+
+
+
 		String[] variable = {"temp", "air humidity", "light", "soil humidity"};
 
 		for (int i = 0; i < 4; i++) {
@@ -111,5 +155,11 @@ public class AlertsController {
 				alertList.getItems().add(realTimePlant.getName() + "'s " + variable[i] + " is good.\n");
 			}
 		}
+
+ */
 	}
+
+
+
 }
+

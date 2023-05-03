@@ -1,0 +1,133 @@
+/* Style the Buttons inside the left VBox */
+#buttonLabel {
+    -fx-background-color: #C8D78C;
+    -fx-text-fill: #333333;
+    -fx-font-size: 16px;
+	-fx-font-family: Lato;	
+}
+
+/* Style the active Button inside the left VBox */
+#ClickedLabel {
+    -fx-background-color: #5C7529;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+	-fx-border-color: #000000;
+	-fx-border-style: dotted;
+	-fx-font-family: Lato;
+}
+
+#monitorLabel {
+    -fx-text-fill: #ffffff;
+	-fx-text-stroke: #000000;
+	-fx-background-color: #333333;
+	-fx-alignment: CENTER;
+	-fx-dropshadow: gaussian, #5C7529, 10, 1, 0, -10;
+    -fx-font-size: 12px;
+	-fx-font-weight: 700;
+	-fx-font-family: Cabin Sketch;
+}
+
+#addPlantwindow {
+	-fx-background-color: #F5F5F5;
+}
+
+#vboxback {
+	-fx-background-color: #F5F5F5;
+}
+
+#plantCornerLabel {
+    -fx-text-fill: #333333;
+	-fx-alignment: CENTER;
+    -fx-font-size: 22px;
+	-fx-font-family: Lato;
+	-fx-font-weight: bold;
+}
+
+#sidepanel {
+	-fx-background-color: #F5F5F5;
+}
+
+/* Style the top VBox */
+#topbox {
+    -fx-background-color: #7A9C36;
+	-fx-padding: 5px;
+	-fx-font-family: Lato;
+}
+
+#botbox {
+    -fx-background-color: #7A9C36;
+	-fx-padding: 5px;
+	-fx-font-family: Lato;
+}
+
+
+#factors {
+	-fx-font-weight: bold;
+	-fx-font-family: Lato;
+	-fx-font-size:14px;
+	-fx-alignment: CENTER;
+}
+
+#resetLabel{
+	    -fx-background-color: 
+        linear-gradient(#81987F, #40521d),
+        linear-gradient(#7d9154 0%, #5c7529 20%, #4a5e21 100%),
+        linear-gradient(#7d9154 0%, #40521d 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1);
+}
+
+#removeLabel{
+	    -fx-background-color: 
+        linear-gradient(#81987F, #40521d),
+        linear-gradient(#7d9154 0%, #5c7529 20%, #4a5e21 100%),
+        linear-gradient(#7d9154 0%, #40521d 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1);
+}
+
+/* Style the Label inside the top VBox */
+.top-box label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+}
+
+/* Style the HBoxes inside the center VBox */
+#centerbox {
+    -fx-background-color: #F5F5F5;
+	-fx-text-alignment: CENTER;
+}
+#centerbox #hboxB {
+    -fx-background-color: #C7D1D1;
+	-fx-text-alignment: CENTER;
+}
+
+#aboutLabel {
+	-fx-padding: 10px;
+	-fx-font-family: Lato;
+	-fx-spacing: 3px;
+	-fx-background-color: #ECEADF;
+	-fx-font-size: 16px;
+}
+
+#vboxback {
+	-fx-background-color: #ECEADF;
+}
+
+#paneLabel {
+	-fx-background-color: #ECEADF;
+}
+
+/*#ABB877, E8E8C8
+
+/* Style the Labels inside the HBoxes */
+.center-box .hbox label {
+    -fx-background-color: #f5fcf0;
+    -fx-text-fill: #3b4828;
+    -fx-font-size: 16px;
+}
+
