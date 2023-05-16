@@ -9,12 +9,17 @@ public class Plant {
     private String light;
     private String soil;
 
-    private String tempRange;
-    private String humidRange;
-    private String lightRange;
-    private String soilRange;
     public Plant(){}
 
+    /**
+     *
+     * @param sensorAtSign AtSign that the ESP32 is configured with
+     * @param name   Plant's name
+     * @param temp   Plant's temperature
+     * @param humid  Plant's air humidity
+     * @param light  Plant's light exposure
+     * @param soil   Plant's soil moisture
+     */
     public Plant(String sensorAtSign, String name, String temp, String humid, String light, String soil) {
         this.sensorAtSign = sensorAtSign;
         this.name = name;
@@ -23,18 +28,6 @@ public class Plant {
         this.light = String.valueOf(light);
         this.soil = String.valueOf(soil);
     }
-
-/*
-    public Plant(String sensorAtSign, String name, double temp, double humid, String light, String soil) {
-        this.sensorAtSign = sensorAtSign;
-        this.name = name;
-        this.tempRange = temp;
-        this.humidRange = humid;
-        this.lightRange = light;
-        this.soilRange = soil;
-    }
-*/
-
 
     public String getName() {
         return name;
@@ -79,18 +72,22 @@ public class Plant {
     }
 
     public String[] getRealTimeRanges() {
+        String tempRange;
         if (Double.parseDouble(temp) > 85) { tempRange = "high"; }
         else if (Double.parseDouble(temp) < 50) { tempRange = "low"; }
         else { tempRange = "moderate"; }
 
+        String humidRange;
         if (Double.parseDouble(humid) > 85) { humidRange = "high"; }
         else if (Double.parseDouble(humid) < 30) { humidRange = "low"; }
         else { humidRange = "moderate"; }
 
+        String lightRange;
         if (Double.parseDouble(light) > 4000) { lightRange = "high"; }
         else if (Double.parseDouble(light) < 3000) { lightRange = "low"; }
         else { lightRange = "moderate"; }
 
+        String soilRange;
         if (Double.parseDouble(soil) > 700) { soilRange = "high"; }
         else if (Double.parseDouble(soil) < 300) { soilRange = "low"; }
         else { soilRange = "moderate"; }
